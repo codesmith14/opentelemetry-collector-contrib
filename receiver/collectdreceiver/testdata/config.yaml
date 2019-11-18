@@ -1,0 +1,19 @@
+receivers:
+  collectd:
+  collectd/one:
+    endpoint: "127.0.0.1:12345"
+    timeout: 50s
+    default_labels_prefix: "lb_"
+
+processors:
+  exampleprocessor:
+
+exporters:
+  exampleexporter:
+
+service:
+  pipelines:
+    traces:
+     receivers: [collectd, collectd/one]
+     processors: [exampleprocessor]
+     exporters: [exampleexporter]
